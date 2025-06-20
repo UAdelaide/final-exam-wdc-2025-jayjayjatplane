@@ -12,11 +12,10 @@
 <body>
     <div id="app">
         <header>
-            <h1>{{ title }}</h1>
+            <h1>Dog of the Day</h1>
         </header>
-        <button v-on:click="loadDog">{{ buttonText }}</button>
-        <img v-bind:src="dogOfTheDayImage" alt="This is supposed to be the image of the dog of the day."
-            id="dogOfTheDayImage">
+        <img id="dogImage" :src="dogImage" alt="">
+        <button @click="loadDog">Load New Dog</button>
     </div>
 </body>
 
