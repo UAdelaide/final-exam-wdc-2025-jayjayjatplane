@@ -35,3 +35,9 @@ header {
 #reloadControl {
   cursor: pointer;
 }
+
+label[for="reloadCheckbox"] {
+  position: absolute;
+  bottom: 80px;
+  right: 100px;
+}
