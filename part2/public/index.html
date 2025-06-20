@@ -17,13 +17,12 @@
     <form @submit.prevent="login" class="dogwalk-login-form">
       <div class="dogwalk-form-group">
         <label for="username" class="dogwalk-form-group-label"><strong>Username</strong></label><br>
-        <input id="username" type="text" v-model="username" class="dogwalk-form-group-control" required>
+        <input id="username" type="text" v-model="username" class="dogwalk-form-group-control" required><br>
       </div>
       <div class="dogwalk-form-group">
         <label for="password" class="dogwalk-form-group-label"><strong>Password</strong></label><br>
-        <input id="password" type="password" v-model="password" class="dogwalk-form-group-control" required>
+        <input id="password" type="password" v-model="password" class="dogwalk-form-group-control" required><br>
       </div>
-      <br>
       <button type="submit" class="btn btn-primary">Log In</button>
     </form>
   </div>
