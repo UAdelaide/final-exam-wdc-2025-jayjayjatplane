@@ -8,8 +8,14 @@ createApp({
         return {
             title: 'Dog of the Day Image',
             buttonText: 'Reload Image',
-            dogOfTheDayImage: ''
+            dogOfTheDayImage: '',
+            isFirstReload: true
         };
+    },
+    computed: {
+        buttonClass() {
+            return this.isFirstReload ? 'greyButton' : 'blueButton';
+        }
     },
     methods: {
         loadNewDog() {
@@ -17,9 +23,10 @@ createApp({
                 .then((res) => res.json())
                 .then((data) => {
                     this.dogOfTheDayImage = data.message;
+                    this.isFirstReload = false;
                 })
                 .catch((err) => {
-                    console.error('There was a an error loading the dog image:', err);
+                    console.error('There was an error loading the dog image:', err);
                 });
         }
     },
