@@ -39,7 +39,7 @@
         <img v-bind:src="dogOfTheDayImage" src=" " alt="This is the image of the dog of the day." id="dogOfTheDayImage">
         <div class="dogRefresh">
             <input type="checkbox" id="reloadCheckbox" v-model="canReload">
-            <label for="reloadCheckbox">Confirm reload</label>
+            <label for="reloadCheckbox">Change dog?</label>
             <span id="reloadControl" v-on:click="loadNewDog">{{ buttonText }}</span>
         </div>
     </div>
