@@ -38,8 +38,7 @@
             which a week, month, or year is divided, and corresponding to the rotation of earth, you can <span
                 id="reloadControl" v-on:click="loadNewDog">{{ buttonText }}</span></p>
         <img v-bind:src="dogOfTheDayImage" src=" " alt="" id="dogOfTheDayImage">
-        <input type="checkbox" id="reloadCheckbox" v-model="canReload">
-        <label for="reloadCheckbox">just a box, doesn't do anything</label>
+        <span id="reloadCheckboxSpan" v-on:click="canReload = !canReload">just a box, doesn't do anything</span>
     </div>
 </body>
 
