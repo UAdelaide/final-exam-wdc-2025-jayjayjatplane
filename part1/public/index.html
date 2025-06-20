@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Dog of the Day Image</title>
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
-    <script src="/javascripts/index.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dog of the Day</title>
+  <link rel="stylesheet" href="/stylesheets/styles.css">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+  <script src="/javascripts/index.js" defer></script>
 </head>
-
 <body>
-    <div id="app">
-        <header>
-            <h1>{{ title }}</h1>
-        </header>
-        <button type="button" v-on:click="loadNewDog">{{ buttonText }}</button>
-        <img v-bind:src="dogOfTheDayImage" src=" " alt="This is the image of the dog of the day." id="dogOfTheDayImage">
-    </div>
+  <div id="app">
+    <header>
+      <h1>{{ title }}</h1>
+    </header>
+    <span id="reloadControl" v-on:click="loadNewDog">{{ buttonText }}</span>
+    <img v-bind:src="dogImage" alt="This is the image of the dog of the day." id="dogImage">
+  </div>
 </body>
 
 </html>
