@@ -12,11 +12,11 @@ createApp({
     methods: {
         loadNewDog() {
             fetch('https://dog.ceo/api/breeds/image/random')
-                .then((res => res.json())
-                .then(data => {
+                .then((res) => res.json())
+                .then((data) => {
                     this.dogOfTheDayImage = data.message;
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.error('There was a an error loading the dog image:', err);
                 });
         }
