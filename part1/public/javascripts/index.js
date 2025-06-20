@@ -3,20 +3,20 @@ const { createApp } = Vue;
 createApp({
     data() {
         return {
-            title: 'Dog of the Day',
+            title: 'Dog of the Day Image',
             buttonText: 'Reload Image',
             dogOfTheDayImage: ''
         };
     },
     methods: {
-        loadDog() {
+        loadNewDog() {
             fetch('https://dog.ceo/api/breeds/image/random')
                 .then(res => res.json())
                 .then(data => {
                     this.dogOfTheDayImage = data.message;
                 })
                 .catch(err => {
-                    console.error('There was an rror loading dog image:', err);
+                    console.error('There was a an error loading the dog image:', err);
                 });
         }
     },
