@@ -37,9 +37,8 @@
         <p><strong>Day:</strong> each of the twenty-four-hour periods, reckoned from one midnight to the next, into
             which a week, month, or year is divided, and corresponding to the rotation of earth, you can <span
                 id="reloadControl" v-on:click="loadNewDog">{{ buttonText }}</span></p>
-        <label for="reloadCheckbox">Change dog?</label>
-        <input type="checkbox" id="reloadCheckbox">
         <img v-bind:src="dogOfTheDayImage" src=" " alt="This is the image of the dog of the day." id="dogOfTheDayImage">
+        <input type="checkbox" id="reloadCheckbox" v-model="canReload">
     </div>
 </body>
 
