@@ -7,7 +7,7 @@ createApp({
     data() {
         return {
             title: 'Dog of the Day Image',
-            buttonText: 'Reload Image',
+            buttonText: 'change the dog',
             dogOfTheDayImage: ''
         };
     },
