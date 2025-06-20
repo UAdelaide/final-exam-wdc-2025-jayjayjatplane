@@ -37,10 +37,10 @@
         <p><strong>Day:</strong> each of the twenty-four-hour periods, reckoned from one midnight to the next, into
             which a week, month, or year is divided, and corresponding to a rotation of the earth on its axis</p>
         <img v-bind:src="dogOfTheDayImage" src=" " alt="This is the image of the dog of the day." id="dogOfTheDayImage">
-        <div class="reload-wrapper">
-            <input type="checkbox" id="refreshCheckbox" v-model="canRefresh">
-            <label for="refreshCheckbox">Dog day changed?</label>
-            <span v-on:click="loadNewDog">{{ buttonText }}</span>
+        <div class="dogRefresh">
+            <input type="checkbox" id="reloadCheckbox" v-model="canReload">
+            <label for="reloadCheckbox">Confirm reload</label>
+            <span id="reloadControl" v-on:click="submitReload">{{ buttonText }}</span>
         </div>
     </div>
 </body>
