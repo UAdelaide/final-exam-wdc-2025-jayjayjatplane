@@ -16,7 +16,7 @@ createApp({
                     this.dogOfTheDayImage = data.message;
                 })
                 .catch(err => {
-                    console.error('There was an error loading dog image:', err);
+                    console.error('There was an rror loading dog image:', err);
                 });
         }
     },
