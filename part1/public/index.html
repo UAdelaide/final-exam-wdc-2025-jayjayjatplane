@@ -2,20 +2,20 @@
 <html lang="en">
 
 <head>
-    <title>Dog of the Day Image</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="/javascripts/index.js" defer></script>
+    <title>Dog of the Day Image</title>
+    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js" defer></script>
+    <script src="/javascripts/script.js" defer></script>
 </head>
 
 <body>
     <div id="app">
         <header>
-            <h1>Dog of the Day</h1>
+            <h1>{{ title }}</h1>
         </header>
         <button v-on:click="loadNewDog">{{ buttonText }}</button>
-        <img v-bind:src="dogOfTheDayImage" alt="Dog of the day" id="dogOfTheDayImage">
+        <img v-bind:src="dogOfTheDayImage" alt="This is the image of the dog of the day." id="dogOfTheDayImage">
     </div>
 </body>
 
