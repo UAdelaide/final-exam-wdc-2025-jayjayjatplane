@@ -14,8 +14,8 @@
         <header>
             <h1>Dog of the Day</h1>
         </header>
-        <button @click="loadNewDog">New Day? New Dog!</button>
-        <img id="dogOfTheDayImage" :src="dogOfTheDayImage" alt="This is the dog of the day.">
+        <button v-on:click="loadNewDog">{{ buttonText }}</button>
+        <img v-bind:src="dogImage" alt="Dog of the day" id="dogImage">
     </div>
 </body>
 
