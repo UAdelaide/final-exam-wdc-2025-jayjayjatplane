@@ -1,6 +1,4 @@
 /* global Vue */
-/* eslint-disable no-console */
-
 const { createApp } = Vue;
 
 createApp({
@@ -8,14 +6,8 @@ createApp({
         return {
             title: 'Dog of the Day Image',
             buttonText: 'Reload Image',
-            dogOfTheDayImage: '',
-            isFirstReload: true
+            dogOfTheDayImage: ''
         };
-    },
-    computed: {
-        buttonClass() {
-            return this.isFirstReload ? 'greyButton' : 'blueButton';
-        }
     },
     methods: {
         loadNewDog() {
@@ -23,10 +15,9 @@ createApp({
                 .then((res) => res.json())
                 .then((data) => {
                     this.dogOfTheDayImage = data.message;
-                    this.isFirstReload = false;
                 })
-                .catch((err) => {
-                    console.error('There was an error loading the dog image:', err);
+                .catch(err) => {
+                    console.error('There was a an error loading the dog image:', err);
                 });
         }
     },
