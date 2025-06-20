@@ -7,19 +7,22 @@ createApp({
     data() {
         return {
             title: 'Dog of the Day Image',
-            buttonText: 'change the dog',
-            dogOfTheDayImage: ''
+            buttonText: 'Reload Image',
+            dogOfTheDayImage: '',
+            canReload: false
         };
     },
     methods: {
         loadNewDog() {
+            if (!this.canReload) return;
             fetch('https://dog.ceo/api/breeds/image/random')
                 .then((res) => res.json())
                 .then((data) => {
                     this.dogOfTheDayImage = data.message;
+                    this.canReload = false;
                 })
                 .catch((err) => {
-                    console.error('There was a an error loading the dog image:', err);
+                    console.error('There was an error loading the dog image:', err);
                 });
         }
     },
