@@ -1,4 +1,5 @@
 /* global Vue */
+/* eslint-disable no-console */
 
 const { createApp } = Vue;
 
