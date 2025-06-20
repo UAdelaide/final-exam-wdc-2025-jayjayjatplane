@@ -21,6 +21,6 @@ createApp({
         }
     },
     mounted() {
-        this.loadDog();
+        this.loadNewDog();
     }
 }).mount('#app');
