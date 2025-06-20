@@ -29,7 +29,6 @@ header {
   position: absolute;
   bottom: 100px;
   right: 100px;
-  transform: scale(1.5);
 }
 
 #reloadControl {
