@@ -29,11 +29,41 @@
 
   <script>
     const { createApp } = Vue;
+
     createApp({
       data() {
         return {
-          message: 'Welcome to the Dog Walking Service!'
+          email: '',
+          password: '',
+          error: ''
         };
+      },
+      methods: {
+        async login() {
+          this.error = '';
+          try {
+            const res = await fetch('/api/users/login', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                email: this.email,
+                password: this.password
+              })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+              this.error = data.error;
+              return;
+            }
+            if (data.user.role === 'owner') {
+              window.location.href = 'owner-dashboard.html';
+            } else {
+              window.location.href = 'walker-dashboard.html';
+            }
+          } catch (e) {
+            this.error = 'Login failed, please try again';
+          }
+        }
       }
     }).mount('#app');
   </script>
