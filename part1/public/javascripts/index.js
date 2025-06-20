@@ -1,4 +1,5 @@
 /* global Vue */
+
 const { createApp } = Vue;
 
 createApp({
