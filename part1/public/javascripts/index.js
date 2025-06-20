@@ -7,8 +7,9 @@ createApp({
     data() {
         return {
             title: 'Dog of the Day Image',
-            buttonText: 'change the dog!',
-            dogOfTheDayImage: ''
+            buttonText: 'Reload Image',
+            dogOfTheDayImage: '',
+            canReload: false
         };
     },
     methods: {
@@ -19,8 +20,13 @@ createApp({
                     this.dogOfTheDayImage = data.message;
                 })
                 .catch((err) => {
-                    console.error('There was a an error loading the dog image:', err);
+                    console.error('There was an error loading the dog image:', err);
                 });
+        },
+        submitReload() {
+            if (this.canReload) {
+                this.loadNewDog();
+            }
         }
     },
     mounted() {
