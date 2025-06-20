@@ -38,7 +38,7 @@
             which a week, month, or year is divided, and corresponding to a rotation of the earth on its axis</p>
         <img v-bind:src="dogOfTheDayImage" src=" " alt="This is the image of the dog of the day." id="dogOfTheDayImage">
         <div class="dogRefresh">
-            <input type="checkbox" id="reloadCheckbox" v-model="canReload">
+            <input type="checkbox" id="reloadCheckbox">
             <label for="reloadCheckbox">Change dog?</label>
             <span id="reloadControl" v-on:click="loadNewDog">{{ buttonText }}</span>
         </div>
