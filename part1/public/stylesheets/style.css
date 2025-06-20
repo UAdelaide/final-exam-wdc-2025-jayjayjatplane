@@ -6,26 +6,36 @@ body {
 }
 
 #app {
-  text-align: center;
-  padding: 1rem;
+  position: relative;
+  min-height: 100vh;
 }
 
-button {
-  background-color: #cccccce5;
-  border: 1px solid #999999dd;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-button:focus {
-  outline: 2px solid #000000e3;
+header {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 #dogOfTheDayImage {
-  display: block;
-  max-width: 90%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 40%;
   height: auto;
-  margin: 1rem auto 0;
   border-radius: 4px;
+}
+
+.reload-wrapper {
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  text-align: right;
+}
+
+.reload-wrapper input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+#reloadControl {
+  cursor: pointer;
 }
