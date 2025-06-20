@@ -10,16 +10,22 @@ body {
   padding: 1rem;
 }
 
-button {
-  background-color: #cccccce5;
-  border: 1px solid #999999dd;
-  padding: 0.5rem 1rem;
+.greyButton {
+  background-color: #ccc;
+  border: 1px solid #999;
+  padding: 1rem;
   font-size: 1rem;
   cursor: pointer;
+  display: inline-block;
 }
 
-button:focus {
-  outline: 2px solid #000000e3;
+.blueButton {
+  background-color: #00aaff;
+  border: none;
+  padding: 0.25rem;
+  font-size: 0.5rem;
+  cursor: pointer;
+  display: inline-block;
 }
 
 #dogOfTheDayImage {
