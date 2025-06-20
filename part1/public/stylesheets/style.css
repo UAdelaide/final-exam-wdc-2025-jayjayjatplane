@@ -25,6 +25,13 @@ header {
   border-radius: 4px;
 }
 
+#reloadCheckbox {
+  position: absolute;
+  bottom: 100px;
+  right: 100px;
+  transform: scale(1.5);
+}
+
 #reloadControl {
   cursor: pointer;
 }
