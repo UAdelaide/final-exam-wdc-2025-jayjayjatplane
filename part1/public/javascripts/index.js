@@ -1,21 +1,26 @@
-/* eslint-disable no-new */
-new Vue({
-    el: '#app',
-    data: {
-        title: 'Dog of the Day',
-        buttonText: 'Reload Image',
-        dogOfTheDayImage: ''
+const { createApp } = Vue;
+
+createApp({
+    data() {
+        return {
+            title: 'Dog of the Day',
+            buttonText: 'Reload Image',
+            dogOfTheDayImage: ''
+        };
     },
     methods: {
-        loadDog: function () {
-            var vm = this;
+        loadDog() {
             fetch('https://dog.ceo/api/breeds/image/random')
-                .then(function (response) { return response.json(); })
-                .then(function (data) { vm.dogOfTheDayImage = data.message; })
-                .catch(function (error) { console.error('Error loading dog image:', error); });
+                .then(res => res.json())
+                .then(data => {
+                    this.dogOfTheDayImage = data.message;
+                })
+                .catch(err => {
+                    console.error('Error loading dog image:', err);
+                });
         }
     },
-    mounted: function () {
+    mounted() {
         this.loadDog();
     }
-});
+}).mount('#app');
