@@ -37,4 +37,6 @@ body {
   cursor: pointer;
 }
 
-background 
+* {
+  background-color: #333;
+}
