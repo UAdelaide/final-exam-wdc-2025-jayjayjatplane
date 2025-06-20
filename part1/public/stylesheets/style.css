@@ -10,7 +10,7 @@ body {
   min-height: 100vh;
 }
 
-header {
+#app-header {
   position: absolute;
   top: 0;
   right: 0;
@@ -25,18 +25,15 @@ header {
   border-radius: 4px;
 }
 
-#reloadCheckbox {
+#reloadCheckboxSpan {
   position: absolute;
   bottom: 100px;
   right: 100px;
+  cursor: pointer;
+  color: #ccc;
 }
 
 #reloadControl {
   cursor: pointer;
-}
-
-label[for="reloadCheckbox"] {
-  position: absolute;
-  bottom: 80px;
-  right: 100px;
+  color: #ccc;
 }
