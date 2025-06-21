@@ -245,7 +245,7 @@ function logout() {
             }
         } catch (error) {
             // log parse errors
-            console.error('Failed to parse logout response:', e);
+            console.error('Failed to parse logout response:', error);
             alert('Unexpected server response');
         }
     };
