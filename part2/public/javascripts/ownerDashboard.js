@@ -18,10 +18,8 @@ createApp({
                 error.value = err.message;
             }
         }
-
         // run once when the component mounts
         onMounted(loadDogs);
-
         // expose to the template
         return { form: ref({ dog_id: '' }), dogs, error };
     }
