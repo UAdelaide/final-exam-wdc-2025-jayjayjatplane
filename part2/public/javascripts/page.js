@@ -195,17 +195,16 @@ function login(event) {
         let response;
         try {
             response = JSON.parse(xhr.responseText);
-        } catch (e) {
-            console.error('Invalid JSON:', e);
+        } catch (error) {
+            console.error('Invalid JSON:', error);
             alert('Unexpected server response');
             return;
         }
-
         if (xhr.status === 200) {
             const { user } = response;
 
             if (!user || !user.role) {
-                alert('Login succeeded but no role returned.');
+                alert('Login Sucess, User has no role.');
                 return;
             }
             if (user.role === 'owner') {
