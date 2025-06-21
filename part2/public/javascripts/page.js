@@ -183,7 +183,7 @@ function login(event) {
         alert('Invalid Username or Password. Please Try Again.');
         return;
     }
-    const userLogin = { user, password };
+    const userLogin = { user, pass };
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -197,7 +197,7 @@ function login(event) {
             return;
         }
         if (xhr.status === 200) {
-            const { user } = response;
+            const { userRole } = response;
             if (!user || !user.role) {
                 alert('Login Sucess, User has no role.');
                 return;
