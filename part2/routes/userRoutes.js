@@ -69,18 +69,22 @@ router.post('/login', async function (req, res) {
 });
 
 router.post('/logout', function (req, res) {
+  // destroy the session
   req.session.destroy((err) => {
     if (err) {
-      console.error("Session destroy error:", err);
+      // log error
+      console.error("Failed to end user session on logout:", err);
+      // send failure response
       return res.status(500).json({ logout: false, error: 'Logout failed' });
     }
+    // remove the session cookie
     res.clearCookie('connect.sid', {
       path: '/',
       httpOnly: true,
     });
+    // send success response
     return res.json({ logout: true });
   });
 });
-
 
 module.exports = router;
