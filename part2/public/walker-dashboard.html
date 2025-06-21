@@ -49,12 +49,12 @@
         const error = ref('');
         const user = ref(null);
 
-        // Fetch the currently logged-in user’s ID and store it in `user.value`
+        // Fetch logged-in user’s ID
         async function getCurrentUser() {
           try {
-            // Send GET request to retrieve current user info
+            // Send GET request to get user info
             const res = await fetch('/api/users/me');
-            // If server responded with an error status, throw a descriptive error
+            // If server responded with an error status, give error
             if (!res.ok) throw new Error('Failed to retrieve user details');
             // Parse the JSON payload
             const data = await res.json();
