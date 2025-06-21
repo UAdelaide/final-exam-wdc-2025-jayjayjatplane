@@ -191,9 +191,9 @@ function login(event) {
         let response;
         try {
             response = JSON.parse(xhr.responseText);
-        } catch (e) {
+        } catch (error) {
             // eslint-disable-next-line
-            console.error('Invalid JSON:', e);
+            console.error('Invalid JSON:', error);
             // eslint-disable-next-line
             alert('Unexpected server response');
             return;
