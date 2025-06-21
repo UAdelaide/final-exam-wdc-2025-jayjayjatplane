@@ -38,7 +38,6 @@ router.get('/me', (req, res) => {
 // POST login
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
-
   try {
     const [rows] = await db.query(`
       SELECT user_id, username, role
@@ -47,7 +46,6 @@ router.post('/login', async (req, res) => {
       AND password_hash = ?`,
       [username, password]
     );
-
     if (rows.length === 0) {
       return res.status(401).json({ error: 'Invalid Username or Password.' });
     }
