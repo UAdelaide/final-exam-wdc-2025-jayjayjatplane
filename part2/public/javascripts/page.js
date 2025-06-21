@@ -173,13 +173,36 @@ function downvote(index) {
     updatePosts();
 }
 
+
+function login() {
+
+    let user = {
+        user: document.getElementById('username').value,
+        pass: document.getElementById('password').value
+    };
+
+    // Create AJAX Request
+    var xmlhttp = new XMLHttpRequest();
+
+    // Define function to run on response
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            alert("Welcome " + this.responseText);
+        } else if (this.readyState == 4 && this.status >= 400) {
+            alert("Login failed");
+        }
+    };
+
+
+}
+
 function login(event) {
     event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
     if (!username || !password) {
-        alert('Invalid Username or Password.');
+        alert('Invalid Username or Password');
         return;
     }
 
