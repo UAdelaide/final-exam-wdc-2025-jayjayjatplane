@@ -101,12 +101,12 @@
           }
         }
 
-        // Fetch the logged-in owner’s dogs from the server
+        // Get logged-in owner’s dogs
         async function loadDogs() {
           try {
-            // send GET request to the dogs endpoint
+            // send GET request to dogs endpoint
             const res = await fetch('/api/users/dogs');
-            // if server returns an error status, throw a descriptive error
+            // if server returns an error status, give error
             if (!res.ok) throw new Error('Failed to load your dogs list');
             // parse response JSON into the reactive dogs array
             dogs.value = await res.json();
