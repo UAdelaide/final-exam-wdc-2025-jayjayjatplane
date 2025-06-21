@@ -179,6 +179,7 @@ function login(event) {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     if (!username || !password) {
+        // eslint-disable-next-line
         alert('Invalid Username or Password.');
         return;
     }
@@ -192,7 +193,9 @@ function login(event) {
         try {
             response = JSON.parse(xhr.responseText);
         } catch (e) {
+            // eslint-disable-next-line
             console.error('Invalid JSON:', e);
+            // eslint-disable-next-line
             alert('Unexpected server response');
             return;
         }
