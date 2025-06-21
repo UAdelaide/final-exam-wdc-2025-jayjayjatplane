@@ -79,9 +79,9 @@ router.post('/logout', (req, res) => {
         .json({ success: false, message: 'Could not log out.' });
     }
     // Clear the session cookie on client
-    return res.clearCookie('connect.sid', { path: '/', httpOnly: true });
+    res.clearCookie('connect.sid', { path: '/', httpOnly: true });
     // Send confirmation of logout
-    res.json({ success: true });
+    return res.json({ success: true });
   });
 });
 
