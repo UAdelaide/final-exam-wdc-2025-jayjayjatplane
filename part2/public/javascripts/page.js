@@ -185,7 +185,6 @@ function login(event) {
     }
     const userLogin = { name, pass };
     const xhr = new XMLHttpRequest();
-
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
