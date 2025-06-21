@@ -237,3 +237,27 @@ function logout() {
     xmlhttp.send();
 
 }
+
+function logout() {
+    // Create AJAX Request
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/users/logout', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+        try {
+            const response = JSON.parse(xhr.responseText);
+            if (xhr.status === 200 && response.logout) {
+                // On successful logout, redirect to homepage
+                window.location.href = 'index.html';
+            } else {
+                alert("Logout failed: " + (response.error || 'Unknown error'));
+            }
+        } catch (e) {
+            alert("Unexpected server response");
+        }
+    };
+    xhr.onerror = function () {
+        alert("Network error during logout.");
+    };
+    xhr.send();
+}
