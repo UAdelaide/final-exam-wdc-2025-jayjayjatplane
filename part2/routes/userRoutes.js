@@ -49,19 +49,16 @@ router.post('/login', async (req, res) => {
     );
 
     if (rows.length === 0) {
-      return res.status(401).json({ error: 'Invalid credentials' });
+      return res.status(401).json({ error: 'Invalid Username or Password.' });
     }
-
-    // session setup
     req.session.user = {
       id: rows[0].user_id,
       username: rows[0].username,
       role: rows[0].role
     };
-
     return res.json({ message: 'Login successful', user: req.session.user });
   } catch (error) {
-    return res.status(500).json({ error: 'Login failed' });
+    return res.status(500).json({ error: 'Login Failed' });
   }
 });
 
