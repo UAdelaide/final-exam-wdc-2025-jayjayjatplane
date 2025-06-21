@@ -217,11 +217,11 @@ function login(event) {
             }
 
         } else {
-            // any 4xx/5xx
+            // Handle login failure
             alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
-
+    // Handle network errors
     xhr.onerror = function () {
         alert('Network error');
     };
