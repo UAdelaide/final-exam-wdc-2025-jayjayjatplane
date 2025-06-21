@@ -207,6 +207,7 @@ function login(event) {
     }
 
     const userLogin = { username, password };
+    // Create AJAX Request
     const xhr = new XMLHttpRequest();
 
     // Open connection to server & send the post data using a POST request
