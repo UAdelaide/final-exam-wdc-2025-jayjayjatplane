@@ -257,3 +257,16 @@ function logout() {
     // perform the request
     xhr.send();
 }
+
+async function loadDogs() {
+    try {
+        const res = await fetch('api/users/dogs');
+        if (!res.ok) throw new Error('failed to get dogs');
+        dogs.value = await res.json();
+    } catch (err) {
+        error.value = err.message;
+    }
+}
+const dogs = ref([]); (in setup),
+    loadDogs(); (onmounted)
+dogs, (on return)
