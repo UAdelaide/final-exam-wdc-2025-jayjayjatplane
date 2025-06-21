@@ -30,9 +30,7 @@
               <!-- Default disabled option prompting selection -->
               <option value="" disabled>Select which dog</option>
               <!-- Generate an option for each dog in the dogs array -->
-              <option v-for="dog in dogs" :key="dog.dog_id" :value="dog.dog_id">
-                {{ dog.name }} <!-- Display the dog’s name -->
-              </option>
+              <option v-for="dog in dogs" :key="dog.dog_id" :value="dog.dog_id">{{ dog.name }}</option>
             </select>
           </div>
           <div class="mb-3">
