@@ -202,7 +202,8 @@ function login(event) {
         if (xhr.status === 200) {
             const { user } = response;
             if (!user || !user.role) {
-                alert('Login succeeded but no role returned.');
+                // eslint-disable-next-line
+                alert('Login Success, User has no role.');
                 return;
             }
             if (user.role === 'owner') {
