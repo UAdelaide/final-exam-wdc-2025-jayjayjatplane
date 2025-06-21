@@ -175,62 +175,55 @@ function downvote(index) {
 
 
 function login(event) {
-event.preventDefault();
-
-const username = document.getElementById('username').value;
-const password = document.getElementById('password').value;
-
-if (!username || !password) {
-alert('Please enter both username and password.');
-return;
+    // Prevent browser default form submission
+    event.preventDefault();
+    // Grab Inputs from user form
+    const name = document.getElementById('name').value;
+    const pass = document.getElementById('pass').value;
+    // Validation: Non-Empty
+    if (!name || !pass) {
+        alert('Invalid name or pass.');
+        return;
+    }
+    const userLogin = { name, pass };
+    // Create AJAX Request
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '/api/users/login', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function () {
+        let response;
+        // Attempt to parse the json response
+        try {
+            response = JSON.parse(xhr.responseText);
+        } catch (error) {
+            console.error('Invalid JSON:', error);
+            alert('Unexpected server response');
+            return;
+        }
+        // Check if the request was successful
+        if (xhr.status === 200) {
+            const { user } = response;
+            if (!user || !user.role) {
+                alert('Login succeeded, User has no role.');
+                return;
+            }
+            // Login to owner dashboard or walker dashboard based on role
+            if (user.role === 'owner') {
+                window.location.href = '/owner-dashboard.html';
+            } else if (user.role === 'walker') {
+                window.location.href = '/walker-dashboard.html';
+            } else {
+                window.location.href = '/index.html';
+            }
+        } else {
+            // Handle login failure
+            alert('Login failed: ' + (response.error || 'Unknown error'));
+        }
+    };
+    // Handle network errors
+    xhr.onerror = function () { alert('Other error'); };
+    xhr.send(JSON.stringify(userLogin));
 }
-
-const userLogin = { username, password };
-const xhr = new XMLHttpRequest();
-
-xhr.open('POST', '/api/users/login', true);
-xhr.setRequestHeader('Content-Type', 'application/json');
-
-xhr.onload = function () {
-let response;
-try {
-response = JSON.parse(xhr.responseText);
-} catch (e) {
-console.error('Invalid JSON:', e);
-alert('Unexpected server response');
-return;
-}
-
-if (xhr.status === 200) {
-const { user } = response;
-
-if (!user || !user.role) {
-alert('Login succeeded but no role returned.');
-return;
-}
-
-// Redirect based on role:
-if (user.role === 'owner') {
-window.location.href = '/owner-dashboard.html';
-} else if (user.role === 'walker') {
-window.location.href = '/walker-dashboard.html';
-} else {
-window.location.href = '/index.html';
-}
-
-} else {
-// any 4xx/5xx
-alert('Login failed: ' + (response.error || 'Unknown error'));
-}
-};
-
-xhr.onerror = function () {
-alert('Network error');
-};
-
-xhr.send(JSON.stringify(userLogin));
-}
-
 
 
 function logout() {
