@@ -65,7 +65,6 @@ function createPost() {
  * Updates the search term then reloads the posts shown
  */
 function searchPosts() {
-
     search = document.getElementById('post-search').value.toUpperCase();
     updatePosts();
 
@@ -185,7 +184,6 @@ function login(event) {
         alert('Please enter both username and password.');
         return;
     }
-
     const userLogin = { username, password };
     const xhr = new XMLHttpRequest();
 
