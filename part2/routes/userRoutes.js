@@ -40,19 +40,16 @@ router.get('/me', (req, res) => {
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
   try {
-    const [rows] = await db.query(
-      `SELECT user_id, username, role
+    const [rows] = await db.query(`
+      SELECT user_id, username, role
       FROM Users
       WHERE username = ?
-    AND password_hash = ?`,
+      ND password_hash = ?`,
       [username, password]
     );
-
     if (rows.length === 0) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
-
-    // session setup
     req.session.user = {
       id: rows[0].user_id,
       username: rows[0].username,
