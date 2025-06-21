@@ -176,12 +176,11 @@ function downvote(index) {
 
 function login(event) {
     event.preventDefault();
-
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
     if (!username || !password) {
-        alert('Please enter both username and password.');
+        alert('Invalid Username or Password.');
         return;
     }
 
@@ -190,7 +189,6 @@ function login(event) {
 
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-
     xhr.onload = function () {
         let response;
         try {
@@ -200,10 +198,8 @@ function login(event) {
             alert('Unexpected server response');
             return;
         }
-
         if (xhr.status === 200) {
             const { user } = response;
-
             if (!user || !user.role) {
                 alert('Login succeeded but no role returned.');
                 return;
@@ -219,7 +215,7 @@ function login(event) {
             alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
-    xhr.onerror = function () {alert('Network error');};
+    xhr.onerror = function () { alert('Network error'); };
     xhr.send(JSON.stringify(userLogin));
 }
 
