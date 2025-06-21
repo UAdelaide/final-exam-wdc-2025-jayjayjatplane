@@ -111,23 +111,22 @@ router.get('/dogs', async (req, res) => {
   }
 });
 
-router.get('/api/dogs', async (req, res) => {
+usersRoutes.js
+added in get route
+router.get('/dogs', async (req, res) => {
   try {
+    const owner_id = req.session.user.id;
     const [rows] = await db.query(`
-      SELECT
-        dog_id,
-        name,
-        size,
-        owner_id
-      FROM Dogs;
-    `);
-
-    return res.json(rows);
+SELECT dog_id, name
+FROM Dogs
+WHERE owner_id = ?`,
+      [owner_id]
+    );
+    res.json(rows);
   } catch (err) {
-    console.error('/api/dogs error:', err);
-    return res.status(500).json({ error: 'Database error' });
+    console.error(err);
+    res.status(500).json({ error: 'couldnt load dogs' });
   }
 });
-
 
 module.exports = router;
