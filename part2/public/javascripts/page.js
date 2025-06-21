@@ -224,10 +224,7 @@ function login(event) {
         }
     };
 
-    xhr.onerror = function () {
-        alert('Network error');
-    };
-
+    xhr.onerror = function () { alert('Network error'); };
     xhr.send(JSON.stringify(userLogin));
 }
 
