@@ -174,32 +174,63 @@ function downvote(index) {
 }
 
 
-function login() {
+function login(event) {
+    // prevent username and password in url
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-    let user = {
-        user: document.getElementById('username').value,
-        pass: document.getElementById('password').value
-    };
+    if (!username || !password) {
+        alert('Please enter both username and password.');
+        return;
+    }
 
-    // Create AJAX Request
-    var xmlhttp = new XMLHttpRequest();
+    const userLogin = { username, password };
+    const xhr = new XMLHttpRequest();
 
-    // Define function to run on response
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            alert("Welcome " + this.responseText);
-        } else if (this.readyState == 4 && this.status >= 400) {
-            alert("Login failed");
+    xhr.open('POST', '/api/users/login', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function () {
+        let response;
+        try {
+            response = JSON.parse(xhr.responseText);
+        } catch (e) {
+            console.error('Invalid JSON:', e);
+            alert('Unexpected server response');
+            return;
+        }
+
+        if (xhr.status === 200) {
+            const { user } = response;
+
+            if (!user || !user.role) {
+                alert('Login succeeded but no role returned.');
+                return;
+            }
+
+            // Redirect based on role:
+            if (user.role === 'owner') {
+                window.location.href = '/owner-dashboard.html';
+            } else if (user.role === 'walker') {
+                window.location.href = '/walker-dashboard.html';
+            } else {
+                window.location.href = '/index.html';
+            }
+
+        } else {
+            // any 4xx/5xx
+            alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
 
-    // Open connection to server & send the post data using a POST request
-    // We will cover POST requests in more detail in week 8
-    xmlhttp.open("POST", "/users/login", true);
-    xmlhttp.setRequestHeader("Content-type", "application/json");
-    xmlhttp.send(JSON.stringify(user));
+    xhr.onerror = function () {
+        alert('Network error');
+    };
 
+    xhr.send(JSON.stringify(userLogin));
 }
+
 
 function logout() {
 
