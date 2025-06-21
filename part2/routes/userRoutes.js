@@ -54,14 +54,10 @@ router.post('/login', async function (req, res) {
       username: account.username,
       role: account.role
     };
-    return res.json({
-    message: 'Successfully logged in', user: req.session.user
-    });
+    return res.json({ message: 'Successfully logged in', user: req.session.user });
   } catch (error) {
     console.error('Login handler error:', error);
-    return res
-      .status(500)
-      .json({ error: 'Error occured in Login.' });
+    return res.status(500).json({ error: 'Error occured in Login.' });
   }
 });
 
