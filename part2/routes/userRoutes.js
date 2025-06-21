@@ -40,6 +40,7 @@ router.post('/login', async function (req, res) {
   // Pull username and password from the request body
   const { username: user, password: pass } = req.body;
   try {
+    // fetch id, username, and role
     const sql = `
       SELECT user_id AS id, username, role
       FROM Users
