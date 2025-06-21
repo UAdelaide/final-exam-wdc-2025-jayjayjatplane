@@ -111,7 +111,7 @@ router.get('/dogs', async (req, res) => {
   }
 });
 
-// Route: GET /api/dogs - return all dogs in the database
+// Route: GET /api/dogs
 router.get('/api/dogs', async (req, res) => {
   try {
     // query all columns needed from the Dogs table
