@@ -78,7 +78,7 @@ router.post('/logout', function (req, res) {
       path: '/',
       httpOnly: true,
     });
-    res.json({ logout: true });
+    return res.json({ logout: true });
   });
 });
 
