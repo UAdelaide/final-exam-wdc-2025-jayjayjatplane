@@ -195,14 +195,13 @@ function login(event) {
         let response;
         try {
             response = JSON.parse(xhr.responseText);
-        } catch (e) {
+        } catch (error) {
             console.error('Invalid JSON:', e);
             alert('Server returned an unexpected response. Please try again later.');
             return;
         }
         if (xhr.status === 200) {
             const { user } = response;
-
             if (!user || !user.role) {
                 alert('Login successful, but no role information was received.');
                 return;
@@ -215,7 +214,6 @@ function login(event) {
             } else {
                 window.location.href = '/index.html';
             }
-
         } else {
             // Handle login failure
             alert('Login was unsuccessful: ' + (response.error || 'An unknown error occurred.'));
@@ -225,7 +223,6 @@ function login(event) {
     xhr.onerror = function () {
         alert('A network issue occurred. Please check your connection and try again.');
     };
-
     xhr.send(JSON.stringify(userLogin));
 }
 
