@@ -88,20 +88,22 @@ router.post('/logout', function (req, res) {
   });
 });
 
+// Route: GET /dogs
 router.get('/dogs', async (req, res) => {
   try {
-    const owner_id = req.session.user.id;
-    const [rows] = await db.query(`
-SELECT dog_id, name
-FROM Dogs
-WHERE owner_id = ?`,
-      [owner_id]
+    const ownerId = req.session.user.id;
+    const [rows] = await db.query(
+      `SELECT dog_id, name
+       FROM Dogs
+       WHERE owner_id = ?`,
+      [ownerId]
     );
     res.json(rows);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'couldnt load dogs' });
+    console.error('Could not load dogs for owner:', err);
+    res.status(500).json({ error: 'Could not load dogs' });
   }
 });
+
 
 module.exports = router;
