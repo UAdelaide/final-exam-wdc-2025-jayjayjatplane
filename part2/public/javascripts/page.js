@@ -183,7 +183,7 @@ function login(event) {
         alert('Invalid Username or Password. Please Try Again.');
         return;
     }
-    const userLogin = { user, pass };
+    const userProfile = { user, pass };
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -214,7 +214,7 @@ function login(event) {
         }
     };
     xhr.onerror = function () { alert('Network error'); };
-    xhr.send(JSON.stringify(userLogin));
+    xhr.send(JSON.stringify(userProfile));
 }
 
 function logout() {
