@@ -4,7 +4,6 @@ const session = require('express-session');
 
 require('dotenv').config();
 
-const pool = require('./db')
 const app = express();
 
 // Middleware
