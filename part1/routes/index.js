@@ -8,4 +8,7 @@ router.get('/', function(req, res, next) {
 
 module.exports = router;
 
-router.get('api/dogs', async(req, res) => {)
+router.get('api/dogs', async(req, res) => {
+  try {
+    const [rows] 
+  })
