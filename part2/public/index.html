@@ -15,8 +15,23 @@
     <h1 class="mb-4 text-primary">{{ message }}</h1>
     <p class="lead">Connect with trusted walkers for your beloved dog!</p>
 
-    <a href="owner-dashboard.html" class="btn btn-outline-primary me-2">Owner Dashboard</a>
-    <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
+    <form id="loginForm" class="mt-4" onsubmit="login(event)">
+      <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input id="username" name="username" type="text" class="form-control" placeholder="username" required
+          autofocus />
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" name="password" type="password" class="form-control" placeholder="password" required />
+      </div>
+
+      <button type="submit" class="btn btn-primary">Log In</button>
+    </form>
+    also has a script tag to call the function in pages.js
+    <script src="/javascripts/page.js"></script>
+
   </div>
 
   <script>
