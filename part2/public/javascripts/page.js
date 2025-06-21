@@ -194,8 +194,8 @@ function login(event) {
         let response;
         try {
             response = JSON.parse(xhr.responseText);
-        } catch (e) {
-            console.error('Invalid JSON:', e);
+        } catch (error) {
+            console.error('Invalid JSON:', error);
             alert('Unexpected server response');
             return;
         }
