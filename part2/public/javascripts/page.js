@@ -181,7 +181,7 @@ function login(event) {
     const password = document.getElementById('password').value;
     // Validation: Non-Empty
     if (!username || !password) {
-        alert('Please enter both username and password.');
+        alert('Username and password are required to log in.');
         return;
     }
     // Create AJAX Request
