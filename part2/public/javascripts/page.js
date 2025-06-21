@@ -267,6 +267,3 @@ async function loadDogs() {
         error.value = err.message;
     }
 }
-const dogs = ref([]); (in setup),
-    loadDogs(); (onmounted)
-dogs, (on return)
