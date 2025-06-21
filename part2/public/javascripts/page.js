@@ -176,24 +176,25 @@ function downvote(index) {
 
 function login(event) {
     event.preventDefault();
-    const name = document.getElementById('name').value;
-    const pass = document.getElementById('pass').value;
-    if (!name || !pass) {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    if (!username || !password) {
         // eslint-disable-next-line
-        alert('Invalid name or pass.');
+        alert('Invalid Username or Password.');
         return;
     }
-    const userLogin = { name, pass };
+    const userLogin = { username, password };
     const xhr = new XMLHttpRequest();
+
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
         let response;
         try {
             response = JSON.parse(xhr.responseText);
-        } catch (error) {
+        } catch (e) {
             // eslint-disable-next-line
-            console.error('Invalid JSON:', error);
+            console.error('Invalid JSON:', e);
             // eslint-disable-next-line
             alert('Unexpected server response');
             return;
@@ -201,8 +202,7 @@ function login(event) {
         if (xhr.status === 200) {
             const { user } = response;
             if (!user || !user.role) {
-                // eslint-disable-next-line
-                alert('Login Success, User has no role.');
+                alert('Login succeeded but no role returned.');
                 return;
             }
             if (user.role === 'owner') {
@@ -213,7 +213,6 @@ function login(event) {
                 window.location.href = '/index.html';
             }
         } else {
-            // eslint-disable-next-line
             alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
