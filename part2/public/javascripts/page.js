@@ -177,7 +177,7 @@ function login(event) {
     // Prevent browser default form submission
     event.preventDefault();
     // Grab Inputs from user form
-    const name = document.getElementById('username').value;
+    const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     // Validation: Non-Empty
     if (!username || !password) {
