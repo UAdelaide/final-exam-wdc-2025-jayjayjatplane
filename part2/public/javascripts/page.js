@@ -176,12 +176,11 @@ function downvote(index) {
 
 function login(event) {
     event.preventDefault();
-
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
     if (!username || !password) {
-        alert('Invalid Username or Password,.');
+        alert('Invalid Username or Password. Please Try Again.');
         return;
     }
     const userLogin = { username, password };
@@ -199,7 +198,6 @@ function login(event) {
         }
         if (xhr.status === 200) {
             const { user } = response;
-
             if (!user || !user.role) {
                 alert('Login Sucess, User has no role.');
                 return;
@@ -218,8 +216,6 @@ function login(event) {
     xhr.onerror = function () { alert('Network error'); };
     xhr.send(JSON.stringify(userLogin));
 }
-
-
 
 function logout() {
 
