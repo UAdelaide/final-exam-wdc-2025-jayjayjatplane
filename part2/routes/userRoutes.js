@@ -45,6 +45,7 @@ router.post('/login', async function (req, res) {
       SELECT user_id AS id, username, role
       FROM Users
       WHERE username = ? AND password_hash = ?`;
+    // Execute with given username and password
     const [result] = await db.query(sql, [user, pass]);
     if (!result.length) {
       return res.status(401).json({ error: 'Invalid Username or Password. Please Try Again.' });
