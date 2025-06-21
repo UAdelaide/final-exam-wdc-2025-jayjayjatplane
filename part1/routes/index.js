@@ -43,6 +43,7 @@ router.get('/api/walkrequests/open', async (req, res) => {
 
     return res.json(rows);
   } catch (err) {
+    // eslint-disable-next-line
     console.error('/api/walkrequests/open error:', err);
     return res.status(500).json({ error: 'Server error' });
   }
