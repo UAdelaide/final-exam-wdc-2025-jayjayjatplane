@@ -176,46 +176,61 @@ function downvote(index) {
 
 function login(event) {
     event.preventDefault();
-    const user = document.getElementById('username').value.trim();
-    const pass = document.getElementById('password').value;
 
-    if (!user || !pass) {
-        alert('Invalid Username or Password. Please Try Again.');
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (!username || !password) {
+        alert('Please enter both username and password.');
         return;
     }
-    const userProfile = { user, pass };
+
+    const userLogin = { username, password };
     const xhr = new XMLHttpRequest();
+
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
+
     xhr.onload = function () {
         let response;
         try {
             response = JSON.parse(xhr.responseText);
-        } catch (error) {
-            console.error('Invalid JSON:', error);
+        } catch (e) {
+            console.error('Invalid JSON:', e);
             alert('Unexpected server response');
             return;
         }
+
         if (xhr.status === 200) {
-            const { userType } = response;
-            if (!userType || !userType.role) {
-                alert('Login Sucess, User has no role.');
+            const { user } = response;
+
+            if (!user || !user.role) {
+                alert('Login succeeded but no role returned.');
                 return;
             }
-            if (userType.role === 'owner') {
+
+            // Redirect based on role:
+            if (user.role === 'owner') {
                 window.location.href = '/owner-dashboard.html';
-            } else if (userType.role === 'walker') {
+            } else if (user.role === 'walker') {
                 window.location.href = '/walker-dashboard.html';
             } else {
                 window.location.href = '/index.html';
             }
+
         } else {
-            alert('Login Failed: ' + (response.error || 'Unknown error'));
+            // any 4xx/5xx
+            alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
-    xhr.onerror = function () { alert('Network error'); };
-    xhr.send(JSON.stringify(userProfile));
+
+    xhr.onerror = function () {
+        alert('Network error');
+    };
+
+    xhr.send(JSON.stringify(userLogin));
 }
+
 
 function logout() {
 
