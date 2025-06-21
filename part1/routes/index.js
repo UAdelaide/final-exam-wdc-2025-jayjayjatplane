@@ -11,20 +11,21 @@ router.get('/api/dogs', async (req, res) => {
   try {
     const [rows] = await db.query(`
       SELECT
-        d.name AS dog_name,
-        d.size AS size,
-        u.username AS owner_username
-      FROM Dogs d
-      JOIN Users u ON d.owner_id = u.user_id
+        d.name       AS dog_name,
+        d.size       AS size,
+        u.username   AS owner_username
+      FROM Dogs AS d
+      INNER JOIN Users AS u
+        ON d.owner_id = u.user_id
+      ORDER BY d.name;
     `);
-
     return res.json(rows);
-  } catch (err) {
-    // eslint-disable-next-line
-    console.error('/api/dogs error:', err);
+  } catch (error) {
+    console.error('/api/dogs error:', error);
     return res.status(500).json({ error: 'Server error' });
   }
 });
+
 
 router.get('/api/walkrequests/open', async (req, res) => {
   try {
