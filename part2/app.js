@@ -18,9 +18,9 @@ app.use('/api/users', userRoutes);
 
 // Session
 app.use(session({
-    secret: 'cherrytea',
+    secret: 'doggies',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialised: true,
     cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 }
 }));
 
