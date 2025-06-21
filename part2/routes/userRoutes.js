@@ -68,4 +68,19 @@ router.post('/login', async function (req, res) {
   }
 });
 
+router.post('/logout', function (req, res) {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Session destroy error:", err);
+      return res.status(500).json({ logout: false, error: 'Logout failed' });
+    }
+    res.clearCookie('connect.sid', {
+      path: '/',
+      httpOnly: true,
+    });
+    res.json({ logout: true });
+  });
+});
+
+
 module.exports = router;
