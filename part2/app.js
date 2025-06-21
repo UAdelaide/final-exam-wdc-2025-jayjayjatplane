@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const express = require('express');
 const path = require('path');
 require('dotenv').config();
@@ -27,3 +26,4 @@ app.use('/api/users', userRoutes);
 
 // Export the app instead of listening here
 module.exports = app;
+s
