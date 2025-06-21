@@ -61,6 +61,8 @@ router.post('/login', async function (req, res) {
     // Success Message
     return res.json({ message: 'Successfully logged in', user: req.session.user });
   } catch (error) {
+    // Unexpected error boundary test cases
+    /* eslint-disable no-console */
     console.error('Login handler error:', error);
     return res.status(500).json({ error: 'Error occured in Login.' });
   }
