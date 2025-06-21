@@ -101,13 +101,18 @@
           }
         }
 
+        // Fetch the logged-in owner’s dogs from the server
         async function loadDogs() {
           try {
-            const res = await fetch('api/users/dogs');
-            if (!res.ok) throw new Error('failed to get dogs');
+            // send GET request to the dogs endpoint
+            const res = await fetch('/api/users/dogs');
+            // if server returns an error status, throw a descriptive error
+            if (!res.ok) throw new Error('Failed to load your dogs list');
+            // parse response JSON into the reactive dogs array
             dogs.value = await res.json();
           } catch (err) {
-            error.value = err.message;
+            // update the error message for the UI
+            error.value = 'Could not retrieve dogs: ' + err.message;
           }
         }
 
