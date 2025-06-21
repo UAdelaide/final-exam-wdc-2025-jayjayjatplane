@@ -190,7 +190,7 @@ function login(event) {
     // Attempt to parse the json response
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-
+    // Check if the request was successful
     xhr.onload = function () {
         let response;
         try {
@@ -200,7 +200,6 @@ function login(event) {
             alert('Unexpected server response');
             return;
         }
-
         if (xhr.status === 200) {
             const { user } = response;
 
@@ -208,8 +207,7 @@ function login(event) {
                 alert('Login succeeded but no role returned.');
                 return;
             }
-
-            // Redirect based on role:
+            // Login to owner dashboard or walker dashboard based on role
             if (user.role === 'owner') {
                 window.location.href = '/owner-dashboard.html';
             } else if (user.role === 'walker') {
