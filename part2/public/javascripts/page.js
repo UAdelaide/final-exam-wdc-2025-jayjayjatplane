@@ -178,12 +178,10 @@ function login(event) {
     event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
-
     if (!username || !password) {
         alert('Invalid Username or Password.');
         return;
     }
-
     const userLogin = { username, password };
     const xhr = new XMLHttpRequest();
 
