@@ -175,8 +175,8 @@ function downvote(index) {
 
 
 function login(event) {
-    // prevent username and password in url
     event.preventDefault();
+
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
