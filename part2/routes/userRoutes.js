@@ -46,8 +46,7 @@ router.post('/login', async function (req, res) {
     const [result] = await db.query(sql, [user, pass]);
 
     if (!result.length) {
-      return res .status(401)
-        .json({ error: 'Invalid Username or Password. Please Try Again.' });
+      return res.status(401).json({ error: 'Invalid Username or Password. Please Try Again.' });
     }
     const account = result[0];
     req.session.user = {
@@ -56,7 +55,7 @@ router.post('/login', async function (req, res) {
       role: account.role
     };
     return res.json({
-      message: 'Successfully logged in',
+    message: 'Successfully logged in',
       user: req.session.user
     });
   } catch (error) {
