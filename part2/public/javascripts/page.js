@@ -207,7 +207,6 @@ function login(event) {
                 alert('Login succeeded but no role returned.');
                 return;
             }
-
             // Redirect based on role:
             if (user.role === 'owner') {
                 window.location.href = '/owner-dashboard.html';
@@ -216,17 +215,14 @@ function login(event) {
             } else {
                 window.location.href = '/index.html';
             }
-
         } else {
             // any 4xx/5xx
             alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
-
     xhr.onerror = function () {
         alert('Network error');
     };
-
     xhr.send(JSON.stringify(userLogin));
 }
 
