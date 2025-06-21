@@ -199,7 +199,7 @@ function login(event) {
         if (xhr.status === 200) {
             const { user } = response;
             if (!user || !user.role) {
-                alert('Login succeeded but no role returned.');
+                alert('Login succeeded, User has no role.');
                 return;
             }
             if (user.role === 'owner') {
