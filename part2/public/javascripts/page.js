@@ -227,26 +227,33 @@ function login(event) {
 }
 
 function logout() {
-    // Create AJAX Request
+    // send logout request
     const xhr = new XMLHttpRequest();
-    // Open connection to server & send the post data using a POST request
+    // set up POST to logout endpoint
     xhr.open('POST', '/api/users/logout', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
         try {
+            // parse JSON reply
             const response = JSON.parse(xhr.responseText);
             if (xhr.status === 200 && response.logout) {
-                // Logout when successful
+                // on success, go to home
                 window.location.href = 'index.html';
             } else {
-                alert("Logout failed: " + (response.error || 'Unknown error'));
+                // show error message
+                alert('Logout failed: ' + (response.error || 'Unknown error'));
             }
-        } catch (e) {
-            alert("Unexpected server response");
+        } catch (error) {
+            // log parse errors
+            console.error('Failed to parse logout response:', e);
+            alert('Unexpected server response');
         }
     };
     xhr.onerror = function () {
-        alert("Network error during logout.");
+        // log network problems
+        console.error('Network failure during logout');
+        alert('Network error during logout.');
     };
+    // perform the request
     xhr.send();
 }
