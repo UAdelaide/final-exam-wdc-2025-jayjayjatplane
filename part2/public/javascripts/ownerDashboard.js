@@ -1,26 +1,37 @@
 import { createApp, ref, onMounted } from 'vue';
 
+// initialise Vue app for owner dashboard
 createApp({
     setup() {
-        // reactive array to hold the owner’s dogs
+        // reactive array to hold fetched dogs
         const dogs = ref([]);
-        // reactive string for any fetch error
+        // reactive string to hold error messages
         const error = ref('');
 
-        // fetch list of dogs for the logged-in owner
+        // load the owner's dogs from the server
         async function loadDogs() {
             try {
+                // send GET request to /api/users/dogs
                 const res = await fetch('/api/users/dogs');
                 if (!res.ok) throw new Error('Failed to load dogs');
+                // update dogs array with response data
                 dogs.value = await res.json();
             } catch (err) {
-                console.error('Error fetching dogs:', err);
+                // log if something goes wrong
+                console.error('Failed to retrieve dog list:', err);
+                // store the error message
                 error.value = err.message;
             }
         }
-        // run once when the component mounts
+
+        // fetch dogs when component mounts
         onMounted(loadDogs);
-        // expose to the template
-        return { form: ref({ dog_id: '' }), dogs, error };
+
+        // expose form model, dogs list, and error to template
+        return {
+            form: ref({ dog_id: '' }),
+            dogs,
+            error
+        };
     }
 }).mount('#app');
