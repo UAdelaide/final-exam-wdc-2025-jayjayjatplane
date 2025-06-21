@@ -197,14 +197,14 @@ function login(event) {
             return;
         }
         if (xhr.status === 200) {
-            const { userRole } = response;
-            if (!user || !user.role) {
+            const { userType } = response;
+            if (!userType || !userType.role) {
                 alert('Login Sucess, User has no role.');
                 return;
             }
-            if (user.role === 'owner') {
+            if (userType.role === 'owner') {
                 window.location.href = '/owner-dashboard.html';
-            } else if (user.role === 'walker') {
+            } else if (userType.role === 'walker') {
                 window.location.href = '/walker-dashboard.html';
             } else {
                 window.location.href = '/index.html';
