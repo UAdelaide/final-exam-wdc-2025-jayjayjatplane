@@ -49,14 +49,20 @@
         const error = ref('');
         const user = ref(null);
 
+        // Fetch the currently logged-in user’s ID and store it in `user.value`
         async function getCurrentUser() {
           try {
+            // Send GET request to retrieve current user info
             const res = await fetch('/api/users/me');
-            if (!res.ok) throw new Error('failed to fetch');
+            // If server responded with an error status, throw a descriptive error
+            if (!res.ok) throw new Error('Failed to retrieve user details');
+            // Parse the JSON payload
             const data = await res.json();
+            // Update the reactive `user` ref with the fetched ID
             user.value = data.id;
           } catch (err) {
-            error.value = err.message;
+            // Store a clear error message for display in the UI
+            error.value = 'Could not load user information: ' + err.message;
           }
         }
 
