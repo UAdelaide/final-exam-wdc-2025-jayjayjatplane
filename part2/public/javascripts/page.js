@@ -186,6 +186,7 @@ function login(event) {
         return;
     }
     const userLogin = { name, pass };
+    // Create AJAX Request
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
