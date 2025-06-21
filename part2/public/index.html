@@ -12,21 +12,10 @@
 <body class="bg-light">
 
   <div id="app" class="container py-5">
-    <h1 class="mb-4 text-primary">Welcome to Dog Walking Service!</h1>
+    <h1 class="mb-4 text-primary">{{ message }}</h1>
 
-    <form @submit.prevent="login" class="dogwalk-login-form">
-      <div class="dogwalk-form-group">
-        <label for="username" class="dogwalk-form-group-label"><strong>Username</strong></label><br>
-        <input id="username" type="text" v-model="username" class="dogwalk-form-group-control" required>
-      </div>
-      <br>
-      <div class="dogwalk-form-group">
-        <label for="password" class="dogwalk-form-group-label"><strong>Password</strong></label><br>
-        <input id="password" type="password" v-model="password" class="dogwalk-form-group-control" required>
-      </div>
-      <br>
-      <button type="submit" class="btn btn-primary">Log In</button>
-    </form>
+    <a href="owner-dashboard.html" class="btn btn-outline-primary me-2">Owner Dashboard</a>
+    <a href="walker-dashboard.html" class="btn btn-outline-success">Walker Dashboard</a>
   </div>
 
   <script>
@@ -34,37 +23,8 @@
     createApp({
       data() {
         return {
-          username: '',
-          password: '',
-          error: ''
+          message: 'Welcome to the Dog Walking Service!'
         };
-      },
-      methods: {
-        async login() {
-          this.error = '';
-          try {
-            const res = await fetch('/api/users/login', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                username: this.username,
-                password: this.password
-              })
-            });
-            const data = await res.json();
-            if (!res.ok) {
-              this.error = data.error;
-              return;
-            }
-            if (data.user.role === 'owner') {
-              window.location.href = 'owner-dashboard.html';
-            } else {
-              window.location.href = 'walker-dashboard.html';
-            }
-          } catch (e) {
-            this.error = 'Login failed, please try again';
-          }
-        }
       }
     }).mount('#app');
   </script>
