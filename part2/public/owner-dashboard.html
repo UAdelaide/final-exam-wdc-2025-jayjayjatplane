@@ -111,7 +111,7 @@
             // parse response JSON into the reactive dogs array
             dogs.value = await res.json();
           } catch (err) {
-            // update the error message for the UI
+            // Error Message
             error.value = 'Could not retrieve dogs: ' + err.message;
           }
         }
