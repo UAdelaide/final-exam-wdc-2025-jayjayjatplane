@@ -197,14 +197,14 @@ function login(event) {
             response = JSON.parse(xhr.responseText);
         } catch (e) {
             console.error('Invalid JSON:', e);
-            alert('Unexpected server response');
+            alert('Server returned an unexpected response. Please try again later.');
             return;
         }
         if (xhr.status === 200) {
             const { user } = response;
 
             if (!user || !user.role) {
-                alert('Login succeeded but no role returned.');
+                alert('Login successful, but no role information was received.');
                 return;
             }
             // Login to owner dashboard or walker dashboard based on role
