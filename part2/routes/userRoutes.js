@@ -51,6 +51,7 @@ router.post('/login', async function (req, res) {
     if (!result.length) {
       return res.status(401).json({ error: 'Invalid Username or Password. Please Try Again.' });
     }
+    // else if success, store user info in the session
     const account = result[0];
     req.session.user = {
       id: account.id,
