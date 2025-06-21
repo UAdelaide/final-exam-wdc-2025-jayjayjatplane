@@ -55,9 +55,9 @@ router.post('/login', async (req, res) => {
       username: rows[0].username,
       role: rows[0].role
     };
-    res.json({ message: 'Login successful', user: req.session.user });
+    return res.json({ message: 'Login successful', user: req.session.user });
   } catch (error) {
-    res.status(500).json({ error: 'Login Failed' });
+    return res.status(500).json({ error: 'Login Failed' });
   }
 });
 
