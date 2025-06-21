@@ -181,16 +181,13 @@ function login(event) {
     const password = document.getElementById('password').value;
 
     if (!username || !password) {
-        alert('Please enter both username and password.');
+        alert('Invalid Username or Password,.');
         return;
     }
-
     const userLogin = { username, password };
     const xhr = new XMLHttpRequest();
-
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-
     xhr.onload = function () {
         let response;
         try {
