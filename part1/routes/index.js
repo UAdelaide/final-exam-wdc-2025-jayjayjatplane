@@ -11,5 +11,5 @@ module.exports = router;
 router.get('api/dogs', async(req, res) => {
   try {
     const [rows] = await debug.query('
-      SELECT d.name as ')
+      SELECT d.name as dogName')
   })
