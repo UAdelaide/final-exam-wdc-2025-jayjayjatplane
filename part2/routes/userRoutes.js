@@ -23,9 +23,9 @@ router.post('/register', async (req, res) => {
       VALUES (?, ?, ?, ?)
     `, [username, email, password, role]);
 
-    res.status(201).json({ message: 'User registered', user_id: result.insertId });
+    return res.status(201).json({ message: 'User registered', user_id: result.insertId });
   } catch (error) {
-    res.status(500).json({ error: 'Registration failed' });
+    return res.status(500).json({ error: 'Registration failed' });
   }
 });
 
@@ -33,7 +33,7 @@ router.get('/me', (req, res) => {
   if (!req.session.user) {
     return res.status(401).json({ error: 'Not logged in' });
   }
-  res.json(req.session.user);
+  return res.json(req.session.user);
 });
 
 // POST login
