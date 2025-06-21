@@ -177,8 +177,10 @@ function downvote(index) {
 function login(event) {
     // Prevent browser default form submission
     event.preventDefault();
+    // Grab Inputs from user form
     const name = document.getElementById('name').value;
     const pass = document.getElementById('pass').value;
+    // Validation: Non-Empty
     if (!name || !pass) {
         alert('Invalid name or pass.');
         return;
