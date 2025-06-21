@@ -90,20 +90,25 @@ router.post('/logout', function (req, res) {
 
 // Route: GET /dogs
 router.get('/dogs', async (req, res) => {
+  // get the logged-in owner’s ID from the session
+  const ownerId = req.session.user.id;
+
   try {
-    const ownerId = req.session.user.id;
+    // query the Dogs table for this owner’s dogs
     const [rows] = await db.query(
       `SELECT dog_id, name
        FROM Dogs
        WHERE owner_id = ?`,
       [ownerId]
     );
+    // return the result as JSON
     res.json(rows);
   } catch (err) {
-    console.error('Could not load dogs for owner:', err);
+    // log if the database call fails
+    console.error('Failed to retrieve dog list:', err);
+    // send a 500 response
     res.status(500).json({ error: 'Could not load dogs' });
   }
 });
-
 
 module.exports = router;
