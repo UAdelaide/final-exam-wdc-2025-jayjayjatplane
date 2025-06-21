@@ -205,6 +205,7 @@ function login(event) {
                 alert('Login succeeded, User has no role.');
                 return;
             }
+            // Login to owner dashboard or walker dashboard based on role
             if (user.role === 'owner') {
                 window.location.href = '/owner-dashboard.html';
             } else if (user.role === 'walker') {
@@ -213,10 +214,12 @@ function login(event) {
                 window.location.href = '/index.html';
             }
         } else {
+            // Handle login failure
             alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
-    xhr.onerror = function () { alert('Network error'); };
+    // Handle network errors
+    xhr.onerror = function () { alert('Other error'); };
     xhr.send(JSON.stringify(userLogin));
 }
 
