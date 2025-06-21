@@ -242,13 +242,8 @@ function login(event) {
             } else {
                 window.location.href = '/index.html';
             }
-        } else {
-            alert('Login failed: ' + (response.error || 'Unknown error'));
-        }
-    };
-    xhr.onerror = function () {
-        alert('Network error');
-    };
+        } else {alert('Login failed: ' + (response.error || 'Unknown error'));}};
+    xhr.onerror = function () { alert('Network error');};
     xhr.send(JSON.stringify(userLogin));
 }
 
