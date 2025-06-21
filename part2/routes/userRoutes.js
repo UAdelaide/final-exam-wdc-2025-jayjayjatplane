@@ -55,8 +55,7 @@ router.post('/login', async function (req, res) {
       role: account.role
     };
     return res.json({
-    message: 'Successfully logged in',
-      user: req.session.user
+    message: 'Successfully logged in', user: req.session.user
     });
   } catch (error) {
     console.error('Login handler error:', error);
