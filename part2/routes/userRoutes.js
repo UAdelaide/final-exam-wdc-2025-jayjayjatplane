@@ -38,21 +38,15 @@ router.get('/me', (req, res) => {
 // Route: POST /login
 router.post('/login', async function (req, res) {
   const { username: user, password: pass } = req.body;
-
   try {
     const sql = `
-      SELECT
-        user_id AS id,
-        username,
-        role
+      SELECT user_id AS id, username, role
       FROM Users
-      WHERE username = ?
-        AND password_hash = ?`;
+      WHERE username = ? AND password_hash = ?`;
     const [result] = await db.query(sql, [user, pass]);
 
     if (!result.length) {
-      return res
-        .status(401)
+      return res .status(401)
         .json({ error: 'Invalid Username or Password. Please Try Again.' });
     }
     const account = result[0];
