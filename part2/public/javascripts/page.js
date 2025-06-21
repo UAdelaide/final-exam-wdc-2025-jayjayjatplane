@@ -176,14 +176,14 @@ function downvote(index) {
 
 function login(event) {
     event.preventDefault();
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value;
+    const user = document.getElementById('username').value.trim();
+    const pass = document.getElementById('password').value;
 
-    if (!username || !password) {
+    if (!user || !pass) {
         alert('Invalid Username or Password. Please Try Again.');
         return;
     }
-    const userLogin = { username, password };
+    const userLogin = { user, password };
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
