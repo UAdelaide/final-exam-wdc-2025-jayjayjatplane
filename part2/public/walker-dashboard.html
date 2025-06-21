@@ -58,10 +58,10 @@
             if (!res.ok) throw new Error('Failed to retrieve user details');
             // Parse the JSON
             const data = await res.json();
-            // Update the reactive `user` ref with the fetched ID
+            // Change reactive `user` ref
             user.value = data.id;
           } catch (err) {
-            // Store a clear error message for display in the UI
+            // error message
             error.value = 'Could not load user information: ' + err.message;
           }
         }
