@@ -64,24 +64,27 @@
       },
       async mounted() {
         try {
-          // dogs
+          // get the list of dogs from the server
           const response = await fetch('/api/users/api/dogs');
-          if (!response.ok) throw new Error('/dog error');
+          if (!response.ok) throw new Error('Failed to retrieve dog list');
           const doggies = await response.json();
 
-          // random dog img
-          const imgResponse = await fetch(`https://dog.ceo/api/breeds/image/random/${doggies.length}`);
-          if (!imgResponse.ok) throw new Error('api error');
+          // fetch a random image for each dog
+          const imgResponse = await fetch(
+            `https://dog.ceo/api/breeds/image/random/${doggies.length}`
+          );
+          if (!imgResponse.ok) throw new Error('Failed to load dog images');
           const { message: images } = await imgResponse.json();
 
+          // merge each dog object with its corresponding image URL
           this.dogs = doggies.map((dog, i) => {
-            const copy = Object.assign({}, dog);
+            const copy = { ...dog };
             copy.photo = images[i];
             return copy;
           });
-
         } catch (err) {
-          console.error(err);
+          // log any errors that occur during data fetching or processing
+          console.error('Error loading dogs and images:', err);
         }
       }
     }).mount('#app');
