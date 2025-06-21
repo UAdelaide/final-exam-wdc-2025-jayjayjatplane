@@ -196,7 +196,7 @@ function login(event) {
         try {
             response = JSON.parse(xhr.responseText);
         } catch (error) {
-            console.error('Invalid JSON:', e);
+            console.error('Invalid JSON:', error);
             alert('Server returned an unexpected response. Please try again later.');
             return;
         }
