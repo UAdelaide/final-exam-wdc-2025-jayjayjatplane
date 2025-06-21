@@ -225,7 +225,6 @@ function login(event) {
     xhr.send(JSON.stringify(userLogin));
 }
 
-
 function logout() {
 
     // Create AJAX Request
