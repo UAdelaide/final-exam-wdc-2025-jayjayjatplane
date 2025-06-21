@@ -15,7 +15,7 @@ const userRoutes = require('./routes/userRoutes');
 
 // Session
 app.use(session({
-    secret: 'doggies',
+    secret: 'blossoms',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false, maxAge: 1000 * 60 * 60 * 24 }
