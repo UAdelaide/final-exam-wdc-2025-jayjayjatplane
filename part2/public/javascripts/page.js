@@ -175,11 +175,11 @@ function downvote(index) {
 
 
 function login(event) {
+    // Prevent browser default form submission
     event.preventDefault();
     const name = document.getElementById('name').value;
     const pass = document.getElementById('pass').value;
     if (!name || !pass) {
-        // eslint-disable-next-line
         alert('Invalid name or pass.');
         return;
     }
