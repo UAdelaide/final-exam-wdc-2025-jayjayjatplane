@@ -218,7 +218,7 @@ function login(event) {
 
         } else {
             // Handle login failure
-            alert('Login failed: ' + (response.error || 'Unknown error'));
+            alert('Login was unsuccessful: ' + (response.error || 'An unknown error occurred.'));
         }
     };
     // Handle network errors
