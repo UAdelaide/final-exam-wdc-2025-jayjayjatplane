@@ -29,7 +29,9 @@
 
       <button type="submit" class="btn btn-primary">Log In</button>
     </form>
+    <!-- Dog list table -->
     <table class="table table-striped">
+      <!-- Table header -->
       <thead>
         <tr>
           <th>Dog ID</th>
@@ -39,14 +41,18 @@
           <th>Photo</th>
         </tr>
       </thead>
+
+      <!-- Table body: one row per dog -->
       <tbody>
         <tr v-for="dog in dogs" :key="dog.dog_id">
+          <!-- show dog properties -->
           <td>{{ dog.dog_id }}</td>
           <td>{{ dog.name }}</td>
-          <td>{{ dog.size}}</td>
+          <td>{{ dog.size }}</td>
           <td>{{ dog.owner_id }}</td>
           <td>
-            <img v-if="dog.photo" :src="dog.photo" src=" " alt="random dog" class="img-thumbnail">
+            <!-- show image if available -->
+            <img v-if="dog.photo" :src="dog.photo" src=" " alt="random dog" class="img-thumbnail" />
           </td>
         </tr>
       </tbody>
