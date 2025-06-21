@@ -192,6 +192,7 @@ function login(event) {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
         let response;
+        // Attempt to parse the json response
         try {
             response = JSON.parse(xhr.responseText);
         } catch (error) {
@@ -199,6 +200,7 @@ function login(event) {
             alert('Unexpected server response');
             return;
         }
+        // Check if the request was successful
         if (xhr.status === 200) {
             const { user } = response;
             if (!user || !user.role) {
