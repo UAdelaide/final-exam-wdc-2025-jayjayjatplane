@@ -201,6 +201,58 @@ function login() {
 
 }
 
+function login(event) {
+    event.preventDefault();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (!username || !password) {
+        alert('Invalid Username or Password.');
+        return;
+    }
+
+    const userLogin = { username, password };
+    const xhr = new XMLHttpRequest();
+
+    xhr.open('POST', '/api/users/login', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+    xhr.onload = function () {
+        let response;
+        try {
+            response = JSON.parse(xhr.responseText);
+        } catch (e) {
+            console.error('Invalid JSON:', e);
+            alert('Login Failed');
+            return;
+        }
+
+        if (xhr.status === 200) {
+            const { user } = response;
+
+            if (!user || !user.role) {
+                alert('Login Success. User has no role..');
+                return;
+            }
+            // Redirect user if they are an owner or walker:
+            if (user.role === 'owner') {
+                window.location.href = '/owner-dashboard.html';
+            } else if (user.role === 'walker') {
+                window.location.href = '/walker-dashboard.html';
+            } else {
+                window.location.href = '/index.html';
+            }
+        } else {
+            alert('Login failed: ' + (response.error || 'Unknown error'));
+        }
+    };
+    xhr.onerror = function () {
+        alert('Network error');
+    };
+    xhr.send(JSON.stringify(userLogin));
+}
+
+
 function logout() {
 
     // Create AJAX Request
