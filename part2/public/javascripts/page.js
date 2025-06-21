@@ -176,14 +176,14 @@ function downvote(index) {
 
 function login(event) {
     event.preventDefault();
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    if (!username || !password) {
+    const name = document.getElementById('name').value;
+    const pass = document.getElementById('pass').value;
+    if (!name || !pass) {
         // eslint-disable-next-line
-        alert('Invalid Username or Password.');
+        alert('Invalid name or pass.');
         return;
     }
-    const userLogin = { username, password };
+    const userLogin = { name, pass };
     const xhr = new XMLHttpRequest();
 
     xhr.open('POST', '/api/users/login', true);
