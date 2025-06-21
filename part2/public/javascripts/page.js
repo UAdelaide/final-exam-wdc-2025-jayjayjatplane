@@ -177,15 +177,15 @@ function login(event) {
     // Prevent browser default form submission
     event.preventDefault();
     // Grab Inputs from user form
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+    const name = document.getElementById('name').value;
+    const pass = document.getElementById('pass').value;
     // Validation: Non-Empty
-    if (!username || !password) {
-        alert('Please enter both username and password.');
+    if (!name || !pass) {
+        alert('Please enter both name and pass.');
         return;
     }
     // Create AJAX Request
-    const userLogin = { username, password };
+    const userLogin = { name, pass };
     const xhr = new XMLHttpRequest();
     // Attempt to parse the json response
     xhr.open('POST', '/api/users/login', true);
