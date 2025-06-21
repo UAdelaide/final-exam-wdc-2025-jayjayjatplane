@@ -111,22 +111,23 @@ router.get('/dogs', async (req, res) => {
   }
 });
 
+// Route: GET /api/dogs - return all dogs in the database
 router.get('/api/dogs', async (req, res) => {
   try {
+    // query all columns we need from the Dogs table
     const [rows] = await db.query(`
-      SELECT
-        dog_id,
-        name,
-        size,
-        owner_id
+      SELECT dog_id, name, size, owner_id
       FROM Dogs;
     `);
-
+    // send the result as JSON
     return res.json(rows);
   } catch (err) {
-    console.error('/api/dogs error:', err);
-    return res.status(500).json({ error: 'Database error' });
+    // log a clear error message if the query fails
+    console.error('Error fetching dog list from DB:', err);
+    // respond with a descriptive error for the client
+    return res.status(500).json({ error: 'Could not retrieve dogs data' });
   }
 });
+
 
 module.exports = router;
