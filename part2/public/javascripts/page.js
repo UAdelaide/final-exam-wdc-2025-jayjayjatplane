@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 var posts = [];
 var search = null;
 
