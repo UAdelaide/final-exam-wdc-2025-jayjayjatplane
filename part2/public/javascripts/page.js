@@ -223,7 +223,7 @@ function login(event) {
             alert('Login Failed');
             return;
         }
-
+        // Define function to run on response
         if (xhr.status === 200) {
             const { user } = response;
 
