@@ -6,8 +6,6 @@ router.get('/', function (req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-module.exports = router;
-
 router.get('/api/dogs', async (req, res) => {
   try {
     const [rows] = await db.query(`
@@ -21,8 +19,11 @@ router.get('/api/dogs', async (req, res) => {
 
     return res.json(rows);
   } catch (err) {
-    
+    // eslint-disable-next-line
     console.error('/api/dogs error:', err);
     return res.status(500).json({ error: 'Server error' });
   }
 });
+
+module.exports = router;
+
