@@ -179,16 +179,13 @@ function login(event) {
     const password = document.getElementById('password').value;
 
     if (!username || !password) {
-        alert('Invalid Username or Password');
+        alert('Invalid Username or Password.');
         return;
     }
 
     const userLogin = { username, password };
-    // Create AJAX Request
     const xhr = new XMLHttpRequest();
 
-    // Open connection to server & send the post data using a POST request
-    // We will cover POST requests in more detail in week 8
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
@@ -201,7 +198,7 @@ function login(event) {
             alert('Login Failed');
             return;
         }
-        // Define function to run on response
+
         if (xhr.status === 200) {
             const { user } = response;
 
@@ -221,7 +218,9 @@ function login(event) {
             alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
-    xhr.onerror = function () { alert('Network error'); };
+    xhr.onerror = function () {
+        alert('Network error');
+    };
     xhr.send(JSON.stringify(userLogin));
 }
 
