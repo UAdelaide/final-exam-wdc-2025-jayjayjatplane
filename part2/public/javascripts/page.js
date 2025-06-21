@@ -174,12 +174,13 @@ function downvote(index) {
 }
 
 function login(event) {
+    // prevent username and password in url
     event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
     if (!username || !password) {
-        alert('Invalid Username or Password.');
+        alert('Please enter both username and password.');
         return;
     }
 
@@ -195,7 +196,7 @@ function login(event) {
             response = JSON.parse(xhr.responseText);
         } catch (e) {
             console.error('Invalid JSON:', e);
-            alert('Login Failed');
+            alert('Unexpected server response');
             return;
         }
 
@@ -203,10 +204,11 @@ function login(event) {
             const { user } = response;
 
             if (!user || !user.role) {
-                alert('Login Success. User has no role..');
+                alert('Login succeeded but no role returned.');
                 return;
             }
-            // Redirect user if they are an owner or walker:
+
+            // Redirect based on role:
             if (user.role === 'owner') {
                 window.location.href = '/owner-dashboard.html';
             } else if (user.role === 'walker') {
@@ -214,7 +216,9 @@ function login(event) {
             } else {
                 window.location.href = '/index.html';
             }
+
         } else {
+            // any 4xx/5xx
             alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
