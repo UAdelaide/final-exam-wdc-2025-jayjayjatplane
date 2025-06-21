@@ -24,7 +24,15 @@
       <div class="card-body">
         <div class="mb-3">
           <label class="form-label">Dog ID</label>
-
+          <!-- Dog selector: binds selected dog_id to form.dog_id -->
+          <select v-model="form.dog_id" class="form-select" required>
+            <!-- Default disabled option prompting selection -->
+            <option value="" disabled>Select which dog</option>
+            <!-- Generate an option for each dog in the dogs array -->
+            <option v-for="dog in dogs" :key="dog.dog_id" :value="dog.dog_id">
+              {{ dog.name }} <!-- Display the dog’s name -->
+            </option>
+          </select>
         </div>
         <div class="mb-3">
           <label class="form-label">Requested Date & Time</label>
