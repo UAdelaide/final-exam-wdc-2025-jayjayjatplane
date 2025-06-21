@@ -36,15 +36,14 @@ router.get('/me', (req, res) => {
   res.json(req.session.user);
 });
 
-// POST login (dummy version)
+// POST login
 router.post('/login', async (req, res) => {
   const { username, password } = req.body;
-
   try {
     const [rows] = await db.query(
       `SELECT user_id, username, role
-    FROM Users
-    WHERE username = ?
+      FROM Users
+      WHERE username = ?
     AND password_hash = ?`,
       [username, password]
     );
