@@ -185,7 +185,6 @@ function login(event) {
     }
     const userLogin = { username, password };
     const xhr = new XMLHttpRequest();
-
     xhr.open('POST', '/api/users/login', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = function () {
@@ -214,6 +213,7 @@ function login(event) {
                 window.location.href = '/index.html';
             }
         } else {
+            // eslint-disable-next-line
             alert('Login failed: ' + (response.error || 'Unknown error'));
         }
     };
