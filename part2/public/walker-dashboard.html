@@ -54,9 +54,9 @@
           try {
             // Send GET request to get user info
             const res = await fetch('/api/users/me');
-            // If server responded with an error status, give error
+            // If server error, give error
             if (!res.ok) throw new Error('Failed to retrieve user details');
-            // Parse the JSON payload
+            // Parse the JSON
             const data = await res.json();
             // Update the reactive `user` ref with the fetched ID
             user.value = data.id;
