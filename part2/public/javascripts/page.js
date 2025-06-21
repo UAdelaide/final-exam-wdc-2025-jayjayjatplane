@@ -223,7 +223,7 @@ function login(event) {
     };
     // Handle network errors
     xhr.onerror = function () {
-        alert('Network error');
+        alert('A network issue occurred. Please check your connection and try again.');
     };
 
     xhr.send(JSON.stringify(userLogin));
