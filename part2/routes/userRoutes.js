@@ -114,7 +114,7 @@ router.get('/dogs', async (req, res) => {
 // Route: GET /api/dogs - return all dogs in the database
 router.get('/api/dogs', async (req, res) => {
   try {
-    // query all columns we need from the Dogs table
+    // query all columns needed from the Dogs table
     const [rows] = await db.query(`
       SELECT dog_id, name, size, owner_id
       FROM Dogs;
